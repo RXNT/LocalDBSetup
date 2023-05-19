@@ -1,0 +1,10 @@
+CREATE TABLE [dbo].[RMDRFLD0] (
+   [MDT_ID] [varchar](2) NOT NULL,
+   [MDT_RFL] [varchar](1) NOT NULL,
+   [MDT_RFLD] [varchar](50) NULL
+
+   ,CONSTRAINT [RMDRFLD0_PK] PRIMARY KEY CLUSTERED ([MDT_ID], [MDT_RFL])
+)
+
+
+GO

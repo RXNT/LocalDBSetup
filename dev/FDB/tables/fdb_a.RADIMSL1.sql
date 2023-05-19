@@ -1,0 +1,10 @@
+CREATE TABLE [fdb_a].[RADIMSL1] (
+   [DDI_SL] [varchar](1) NOT NULL,
+   [DDI_SLSN] [numeric](2,0) NOT NULL,
+   [DDI_SLTXT] [varchar](70) NULL
+
+   ,CONSTRAINT [RADIMSL1_PK] PRIMARY KEY CLUSTERED ([DDI_SL], [DDI_SLSN])
+)
+
+
+GO

@@ -1,0 +1,8 @@
+CREATE TABLE [dbo].[SEMIDOCIDS] (
+   [drid] [int] NOT NULL
+
+   ,CONSTRAINT [PK_SEMIDOCIDS] PRIMARY KEY CLUSTERED ([drid])
+)
+
+
+GO

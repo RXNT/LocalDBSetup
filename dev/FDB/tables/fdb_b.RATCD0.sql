@@ -1,0 +1,9 @@
+CREATE TABLE [fdb_b].[RATCD0] (
+   [ATC] [varchar](7) NOT NULL,
+   [ATC_DESC] [varchar](50) NULL
+
+   ,CONSTRAINT [RATCD0_PK] PRIMARY KEY CLUSTERED ([ATC])
+)
+
+
+GO

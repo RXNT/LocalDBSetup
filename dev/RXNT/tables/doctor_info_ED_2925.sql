@@ -1,0 +1,37 @@
+CREATE TABLE [dbo].[doctor_info_ED_2925] (
+   [dr_id] [int] NOT NULL,
+   [dr_dea_address1] [varchar](100) NULL,
+   [dr_dea_address2] [varchar](100) NULL,
+   [dr_dea_city] [varchar](50) NULL,
+   [dr_dea_state] [varchar](30) NULL,
+   [dr_dea_zip] [varchar](20) NULL,
+   [dr_dea_first_name] [varchar](50) NULL,
+   [dr_dea_last_name] [varchar](50) NULL,
+   [dr_dea_middle_initial] [varchar](20) NULL,
+   [spectrum_id] [varchar](30) NULL,
+   [blowusageemail] [bit] NOT NULL,
+   [labcorp_id] [varchar](50) NULL,
+   [securityset] [bit] NULL,
+   [bduplicateuser] [bit] NULL,
+   [is_coupon_enabled] [bit] NULL,
+   [is_custom_tester] [int] NULL,
+   [is_epcs] [bit] NULL,
+   [IS_MUALERTS_ENABLED] [smallint] NULL,
+   [settings] [smallint] NOT NULL,
+   [system_level_cds] [int] NULL,
+   [VersionURL] [varchar](200) NULL,
+   [bOverrideDEA] [bit] NOT NULL,
+   [encounter_version] [varchar](10) NULL,
+   [vitals_unit_type] [varchar](5) NULL,
+   [INLCUDE_ICD_Prescription] [bit] NULL,
+   [return_to_prov_dashboard] [bit] NULL,
+   [Add_Medications_To_My_Fav_Drugs] [bit] NULL,
+   [EnableRulesEngine] [bit] NULL,
+   [is_bannerads_enabled] [bit] NULL,
+   [hide_walkme] [bit] NULL,
+   [staff_preferred_prescriber] [bigint] NULL,
+   [is_pain_scale_enabled] [bit] NULL
+)
+
+
+GO

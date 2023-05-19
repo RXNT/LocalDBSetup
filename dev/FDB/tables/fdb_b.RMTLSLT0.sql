@@ -1,0 +1,12 @@
+CREATE TABLE [fdb_b].[RMTLSLT0] (
+   [MTL_SPEC_LAB_ID] [numeric](8,0) NOT NULL,
+   [LAB_ID] [numeric](8,0) NOT NULL,
+   [MTL_METHOD_ID] [numeric](5,0) NOT NULL,
+   [MTL_SPEC_LAB_ID_DESC] [varchar](100) NULL,
+   [MTL_SPEC_LAB_ID_STATUS] [varchar](1) NOT NULL
+
+   ,CONSTRAINT [RMTLSLT0_PK] PRIMARY KEY CLUSTERED ([MTL_SPEC_LAB_ID])
+)
+
+
+GO

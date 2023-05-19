@@ -1,0 +1,11 @@
+CREATE TABLE [fdb_a].[RADIMGC4] (
+   [GCN_SEQNO] [numeric](6,0) NOT NULL,
+   [DDI_CODEX] [numeric](5,0) NOT NULL,
+   [ddi_diff] [numeric](5,0) NULL
+
+   ,CONSTRAINT [RADIMGC4_PK] PRIMARY KEY CLUSTERED ([GCN_SEQNO], [DDI_CODEX])
+)
+
+CREATE NONCLUSTERED INDEX [RADIMGC4_NX1] ON [fdb_a].[RADIMGC4] ([DDI_CODEX], [GCN_SEQNO], [ddi_diff])
+
+GO

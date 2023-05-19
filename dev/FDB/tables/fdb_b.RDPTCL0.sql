@@ -1,0 +1,10 @@
+CREATE TABLE [fdb_b].[RDPTCL0] (
+   [DPT_CLASS_ID] [numeric](8,0) NOT NULL,
+   [DPT_CLASS_DESC] [varchar](60) NULL,
+   [DPT_ALLOWANCE] [numeric](2,0) NULL
+
+   ,CONSTRAINT [RDPTCL0_PK] PRIMARY KEY CLUSTERED ([DPT_CLASS_ID])
+)
+
+
+GO

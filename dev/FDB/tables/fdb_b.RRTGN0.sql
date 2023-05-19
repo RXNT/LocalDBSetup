@@ -1,0 +1,12 @@
+CREATE TABLE [fdb_b].[RRTGN0] (
+   [ROUTED_GEN_ID] [numeric](8,0) NOT NULL,
+   [ROUTED_GEN_DESC] [varchar](100) NOT NULL,
+   [GCRT] [varchar](1) NOT NULL,
+   [HICL_SEQNO] [numeric](6,0) NOT NULL,
+   [ROUTED_GEN_STATUS_CD] [varchar](1) NOT NULL
+
+   ,CONSTRAINT [RRTGN0_PK] PRIMARY KEY CLUSTERED ([ROUTED_GEN_ID])
+)
+
+
+GO

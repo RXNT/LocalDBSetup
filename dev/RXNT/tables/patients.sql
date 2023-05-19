@@ -1,0 +1,78 @@
+CREATE TABLE [dbo].[patients] (
+   [pa_id] [int] NOT NULL
+      IDENTITY (1,1),
+   [pa_field_not_used1] [int] NULL,
+   [dg_id] [int] NOT NULL,
+   [dr_id] [int] NOT NULL,
+   [pa_first] [varchar](50) NOT NULL,
+   [pa_middle] [varchar](50) NOT NULL,
+   [pa_last] [varchar](61) NULL,
+   [pa_ssn] [varchar](50) NULL,
+   [pa_dob] [smalldatetime] NULL,
+   [pa_address1] [varchar](100) NOT NULL,
+   [pa_address2] [varchar](100) NOT NULL,
+   [pa_city] [varchar](50) NOT NULL,
+   [pa_state] [varchar](2) NOT NULL,
+   [pa_zip] [varchar](20) NOT NULL,
+   [pa_phone] [varchar](80) NOT NULL,
+   [pa_wgt] [int] NOT NULL,
+   [pa_sex] [varchar](1) NOT NULL,
+   [ic_id] [int] NOT NULL,
+   [ic_group_numb] [varchar](30) NOT NULL,
+   [card_holder_id] [varchar](30) NOT NULL,
+   [card_holder_first] [varchar](50) NOT NULL,
+   [card_holder_mi] [varchar](1) NOT NULL,
+   [card_holder_last] [varchar](50) NOT NULL,
+   [ic_plan_numb] [varchar](30) NOT NULL,
+   [ins_relate_code] [varchar](4) NOT NULL,
+   [ins_person_code] [varchar](4) NOT NULL,
+   [formulary_id] [varchar](30) NOT NULL,
+   [alternative_id] [varchar](30) NOT NULL,
+   [pa_bin] [varchar](30) NOT NULL,
+   [primary_pharm_id] [int] NULL,
+   [pa_notes] [varchar](255) NULL,
+   [ph_drugs] [varchar](100) NULL,
+   [pa_email] [varchar](80) NULL,
+   [pa_ext] [varchar](10) NULL,
+   [rxhub_pbm_id] [varchar](15) NULL,
+   [pbm_member_id] [varchar](80) NULL,
+   [def_ins_id] [int] NOT NULL,
+   [last_check_date] [smalldatetime] NOT NULL,
+   [check_eligibility] [bit] NOT NULL,
+   [sfi_is_sfi] [bit] NULL,
+   [sfi_patid] [varchar](50) NULL,
+   [pa_ht] [int] NOT NULL,
+   [pa_upd_stat] [smallint] NULL,
+   [pa_flag] [tinyint] NULL,
+   [pa_ext_id] [varchar](20) NULL,
+   [access_date] [datetime] NULL,
+   [access_user] [int] NULL,
+   [pa_ins_type] [tinyint] NULL,
+   [pa_race_type] [tinyint] NULL,
+   [pa_ethn_type] [tinyint] NULL,
+   [pref_lang] [smallint] NULL,
+   [add_date] [smalldatetime] NULL,
+   [add_by_user] [int] NULL,
+   [record_modified_date] [datetime] NULL,
+   [pa_ext_ssn_no] [varchar](25) NULL,
+   [pa_prefix] [varchar](10) NULL,
+   [pa_suffix] [varchar](10) NULL,
+   [active] [bit] NULL,
+   [last_modified_date] [datetime] NULL,
+   [last_modified_by] [int] NULL,
+   [OwnerType] [varchar](5) NULL,
+   [pa_birthName] [varchar](50) NULL,
+   [InformationBlockingReasonId] [int] NULL,
+   [FhirDataEnabled] [bit] NULL,
+   [FhirDataEnabledAt] [datetime] NULL
+
+   ,CONSTRAINT [PK_patients] PRIMARY KEY NONCLUSTERED ([pa_id])
+)
+
+CREATE NONCLUSTERED INDEX [_dta_index_patients_23_1234207547__K1_K7_5_8_9_10_12_13_14_17] ON [dbo].[patients] ([pa_id], [pa_last]) INCLUDE ([pa_address1], [pa_city], [pa_dob], [pa_first], [pa_sex], [pa_ssn], [pa_state], [pa_zip])
+CREATE NONCLUSTERED INDEX [_dta_index_patients_7_207391858__K3_K5_1_2_4_6_7_8_9_10_11_12_13_14_15_16_17_18_19_20_21_22_23_24_25_26_27_28_29_30_31_32_33_] ON [dbo].[patients] ([dg_id], [pa_first]) INCLUDE ([alternative_id], [card_holder_first], [card_holder_id], [card_holder_last], [card_holder_mi], [check_eligibility], [def_ins_id], [dr_id], [formulary_id], [ic_group_numb], [ic_id], [ic_plan_numb], [ins_person_code], [ins_relate_code], [last_check_date], [pa_address1], [pa_address2], [pa_bin], [pa_city], [pa_dob], [pa_email], [pa_ext], [pa_field_not_used1], [pa_ht], [pa_id], [pa_last], [pa_middle], [pa_notes], [pa_phone], [pa_sex], [pa_ssn], [pa_state], [pa_upd_stat], [pa_wgt], [pa_zip], [pbm_member_id], [ph_drugs], [primary_pharm_id], [rxhub_pbm_id], [sfi_is_sfi], [sfi_patid])
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Patient_Last_check_date] ON [dbo].[patients] ([pa_id], [last_check_date])
+CREATE NONCLUSTERED INDEX [IX_patients-pa_dob-incld] ON [dbo].[patients] ([pa_dob]) INCLUDE ([dg_id], [pa_address1], [pa_address2], [pa_city], [pa_email], [pa_ethn_type], [pa_ext_ssn_no], [pa_first], [pa_flag], [pa_id], [pa_ins_type], [pa_last], [pa_middle], [pa_phone], [pa_race_type], [pa_sex], [pa_ssn], [pa_state], [pa_zip], [pref_lang])
+CREATE CLUSTERED INDEX [IX_Patients-Pa_Last-Pa_Id] ON [dbo].[patients] ([pa_last], [pa_id])
+
+GO

@@ -1,0 +1,2 @@
+CREATE SYNONYM [dbo].[RSTR1] FOR [fdb_a].[RSTR1]
+GO

@@ -1,0 +1,9 @@
+CREATE TABLE [fdb_b].[RAHFSD1] (
+   [AHFS8] [numeric](8,0) NOT NULL,
+   [AHFS_DESC] [varchar](40) NULL
+
+   ,CONSTRAINT [RAHFSD1_PK] PRIMARY KEY CLUSTERED ([AHFS8])
+)
+
+
+GO

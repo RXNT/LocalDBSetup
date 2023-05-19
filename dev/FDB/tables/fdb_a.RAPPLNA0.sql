@@ -1,0 +1,10 @@
+CREATE TABLE [fdb_a].[RAPPLNA0] (
+   [NDC] [varchar](11) NOT NULL,
+   [APPL_NO] [varchar](25) NOT NULL,
+   [APPL_TYPE_CD] [numeric](4,0) NOT NULL
+
+   ,CONSTRAINT [RAPPLNA0_PK] PRIMARY KEY CLUSTERED ([NDC], [APPL_NO])
+)
+
+
+GO

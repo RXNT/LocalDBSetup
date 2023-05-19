@@ -1,0 +1,9 @@
+CREATE TABLE [fdb_b].[RDCCD0] (
+   [DCC] [varchar](1) NOT NULL,
+   [DCC_DESC] [varchar](40) NULL
+
+   ,CONSTRAINT [RDCCD0_PK] PRIMARY KEY CLUSTERED ([DCC])
+)
+
+
+GO

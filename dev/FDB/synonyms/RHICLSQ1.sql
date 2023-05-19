@@ -1,0 +1,2 @@
+CREATE SYNONYM [dbo].[RHICLSQ1] FOR [fdb_a].[RHICLSQ1]
+GO

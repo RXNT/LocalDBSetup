@@ -1,0 +1,12 @@
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+CREATE VIEW new_drugs_xref AS SELECT old_medid old_id, new_medid new_id from FDB..matched_drugs
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+GO

@@ -1,0 +1,11 @@
+CREATE TABLE [dbo].[RBLPGC0] (
+   [GCN_SEQNO] [numeric](6,0) NOT NULL,
+   [PS] [numeric](11,3) NOT NULL,
+   [BLP_DATEC] [datetime] NOT NULL,
+   [BLP_PRICE] [numeric](9,5) NULL
+
+   ,CONSTRAINT [RBLPGC0_PK] PRIMARY KEY CLUSTERED ([GCN_SEQNO], [PS], [BLP_DATEC])
+)
+
+
+GO

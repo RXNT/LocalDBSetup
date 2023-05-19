@@ -1,0 +1,37 @@
+CREATE TABLE [dbo].[rnmmidndc_updates] (
+   [NDC] [varchar](11) NOT NULL,
+   [OBSDTEC] [datetime] NULL,
+   [LBLRID] [varchar](6) NULL,
+   [GCN_SEQNO] [numeric](6,0) NULL,
+   [LN] [varchar](30) NULL,
+   [BN] [varchar](30) NULL,
+   [DEA] [varchar](1) NULL,
+   [GPI] [varchar](1) NULL,
+   [OBC] [varchar](2) NULL,
+   [REPACK] [varchar](1) NULL,
+   [LN25] [varchar](25) NULL,
+   [MEDID] [numeric](8,0) NOT NULL,
+   [MED_STRENGTH] [varchar](15) NULL,
+   [MED_STRENGTH_UOM] [varchar](15) NULL,
+   [MED_MEDID_DESC] [varchar](70) NOT NULL,
+   [MED_REF_DEA_CD] [varchar](1) NOT NULL,
+   [GENERIC_MEDID] [numeric](8,0) NULL,
+   [ROUTED_DOSAGE_FORM_MED_ID] [numeric](8,0) NOT NULL,
+   [med_routed_df_med_id_desc] [varchar](60) NOT NULL,
+   [ROUTED_MED_ID] [numeric](8,0) NOT NULL,
+   [MED_ROUTED_MED_ID_DESC] [varchar](60) NOT NULL,
+   [MED_NAME_ID] [numeric](8,0) NOT NULL,
+   [MED_NAME] [varchar](30) NOT NULL,
+   [MED_NAME_TYPE_CD] [varchar](1) NOT NULL,
+   [MED_DOSAGE_FORM_ID] [numeric](5,0) NOT NULL,
+   [MED_DOSAGE_FORM_ABBR] [varchar](4) NOT NULL,
+   [MED_DOSAGE_FORM_DESC] [varchar](30) NOT NULL,
+   [MED_ROUTE_ID] [numeric](5,0) NOT NULL,
+   [MED_ROUTE_ABBR] [varchar](4) NOT NULL,
+   [MED_ROUTE_DESC] [varchar](30) NOT NULL,
+   [ETC_ID] [numeric](8,0) NOT NULL,
+   [ETC_NAME] [varchar](70) NULL
+)
+
+
+GO

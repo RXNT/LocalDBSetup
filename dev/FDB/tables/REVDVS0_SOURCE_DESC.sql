@@ -1,0 +1,7 @@
+CREATE TABLE [dbo].[REVDVS0_SOURCE_DESC] (
+   [EVD_SOURCE_ID] [numeric](4,0) NOT NULL,
+   [EVD_SOURCE_DESC] [varchar](50) NOT NULL
+)
+
+
+GO

@@ -1,0 +1,2 @@
+CREATE SYNONYM [dbo].[RNDC14] FOR [fdb_a].[RNDC14]
+GO

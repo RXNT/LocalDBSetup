@@ -1,0 +1,8 @@
+CREATE TABLE [dbo].[REVDLT0_LINK_TYPE_DESC] (
+   [EVD_LINK_TYPE_ID] [numeric](4,0) NOT NULL,
+   [EVD_SOURCE_ID] [numeric](4,0) NOT NULL,
+   [EVD_LINK_TYPE_DESC] [varchar](50) NOT NULL
+)
+
+
+GO

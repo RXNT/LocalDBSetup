@@ -1,0 +1,8 @@
+CREATE TABLE [dbo].[REVDVT0_VOCAB_TYPE_DEF] (
+   [EVD_VOCAB_TYPE_ID] [numeric](4,0) NOT NULL,
+   [EVD_VOCAB_TYPE_DESC] [varchar](50) NOT NULL,
+   [EVD_SOURCE_ID] [numeric](4,0) NOT NULL
+)
+
+
+GO

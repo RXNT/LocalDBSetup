@@ -1,0 +1,12 @@
+ALTER TABLE [cqm2023].[DoctorCQMCalcPop1CMS68v12_NQF0419] WITH CHECK ADD CONSTRAINT [FK_cqm2023_DoctorCQMCalcPop1CMS68v12_NQF0419_doctors]
+   FOREIGN KEY([DoctorId]) REFERENCES [dbo].[doctors] ([dr_id])
+
+GO
+ALTER TABLE [cqm2023].[DoctorCQMCalcPop1CMS68v12_NQF0419] WITH CHECK ADD CONSTRAINT [FK_cqm2023_DoctorCQMCalcPop1CMS68v12_NQF0419_patients]
+   FOREIGN KEY([PatientId]) REFERENCES [dbo].[patients] ([pa_id])
+
+GO
+ALTER TABLE [cqm2023].[DoctorCQMCalcPop1CMS68v12_NQF0419] WITH CHECK ADD CONSTRAINT [FK_cqm2023_DoctorCQMCalcPop1CMS68v12_NQF0419_DoctorCQMCalculationRequest]
+   FOREIGN KEY([RequestId]) REFERENCES [cqm2023].[DoctorCQMCalculationRequest] ([RequestId])
+
+GO

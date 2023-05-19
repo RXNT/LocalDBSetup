@@ -1,0 +1,14 @@
+CREATE TABLE [dbo].[REVDCPT0_EXT_CPT_CVX_LINK] (
+   [EVD_CPT_CD] [varchar](10) NOT NULL,
+   [EVD_CVX_CD] [varchar](10) NOT NULL,
+   [EVD_CPT_CD_DESC] [varchar](255) NULL,
+   [EVD_VACCINE_NAME] [varchar](100) NULL,
+   [EVD_CPT_STATUS] [varchar](30) NULL,
+   [EVD_CPT_CVX_NOTE] [varchar](255) NULL,
+   [EVD_CPT_CVX_LAST_UPDATE_DT] [datetime] NULL
+
+   ,CONSTRAINT [REVDCPT0_PK] PRIMARY KEY CLUSTERED ([EVD_CPT_CD], [EVD_CVX_CD])
+)
+
+
+GO

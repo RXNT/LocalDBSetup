@@ -1,0 +1,10 @@
+CREATE TABLE [fdb_b].[RDDIMAG0] (
+   [DDI_CODEX] [numeric](5,0) NOT NULL,
+   [DDI_AGSN] [numeric](3,0) NOT NULL,
+   [DDI_AGD] [varchar](41) NULL
+
+   ,CONSTRAINT [RDDIMAG0_PK] PRIMARY KEY CLUSTERED ([DDI_CODEX], [DDI_AGSN])
+)
+
+
+GO

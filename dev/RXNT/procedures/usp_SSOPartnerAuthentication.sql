@@ -1,0 +1,43 @@
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+-- =============================================
+-- Author:				<Author,,Name>
+-- Create date:			<Create Date,,>
+-- Description:			<Description,,>
+-- Last Modified By:	Ayja Weems
+-- Last Modifed Date:	23-Oct-2020
+-- =============================================
+CREATE PROCEDURE [dbo].[usp_SSOPartnerAuthentication] 
+(
+  @DRID BIGINT
+)
+AS
+BEGIN
+	
+		SELECT D.DR_ID,D.DR_USERNAME,D.DG_ID,DG.DC_ID,DR_FIRST_NAME,DR_LAST_NAME,DR_EMAIL,D.NPI, D.ISMIGRATED,D.professional_designation,
+		DATEDIFF(dd, GETDATE(), D.password_expiry_date) AS 'DaysToExpire',D.dr_enabled AS Active,
+		DG.dg_name,D.dr_password,D.salt
+		FROM DOCTORS  D WITH(NOLOCK)
+		INNER JOIN DOC_GROUPS DG WITH(NOLOCK) ON DG.DG_ID=D.DG_ID
+		WHERE DR_ID=@DRID
+		
+		SELECT '' AS APPLICATIONID,'eHr' AS NAME,'eRx | eHr' AS APPLICATIONTYPENAME,DI.VERSIONURL AS APPLICATIONVERSION,'' AS APPLICATIONURL,  DCH.DC_HOST_NAME AS APPHOSTNAME,DCH.DC_HOST_LOGIN_PROTO AS APPHOSTPROTOCAL
+		FROM DOCTORS D
+		INNER JOIN DOCTOR_INFO DI ON DI.DR_ID=D.DR_ID
+		INNER JOIN DOC_GROUPS DG ON DG.DG_ID=D.DG_ID
+		INNER JOIN DOC_COMPANIES DC ON DC.DC_ID=DG.DC_ID
+		INNER JOIN DOC_COMPANY_HOSTS DCH ON DCH.DC_HOST_ID=DC.DC_HOST_ID
+		WHERE D.DR_ID=@DRID	
+			
+END		
+
+ 
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+GO

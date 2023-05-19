@@ -1,0 +1,164 @@
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+CREATE PROCEDURE dbo.spDoFDBSwap
+AS 	
+BEGIN
+	SET NOCOUNT ON
+	BEGIN TRANSACTION
+
+	BEGIN TRY
+		DECLARE @CURR_SCHEMA VARCHAR(10)
+		DECLARE @NEW_SCHEMA VARCHAR(10)
+		DECLARE @CURR_SCHEMA_ID INT
+		DECLARE @NEW_SCHEMA_ID INT
+		DECLARE @TABLE_NAME VARCHAR(255)
+		DECLARE @SQL NVARCHAR(4000)
+		DECLARE @ERROR NVARCHAR(MAX)
+
+		SELECT @CURR_SCHEMA = fdb_schema_current_name FROM dbo.fdb_schema_current WHERE fdb_schema_current_id = 1
+
+		IF @CURR_SCHEMA = 'fdb_a' BEGIN
+			SET @NEW_SCHEMA = 'fdb_b'
+		END ELSE BEGIN
+			SET @NEW_SCHEMA = 'fdb_a'
+		END
+
+		SELECT @CURR_SCHEMA_ID = schema_id FROM sys.schemas WHERE name = @CURR_SCHEMA
+		SELECT @NEW_SCHEMA_ID = schema_id FROM sys.schemas WHERE name = @NEW_SCHEMA
+
+		PRINT 'Current schema: [' + CONVERT(VARCHAR(3), @CURR_SCHEMA_ID) + '] ' + @CURR_SCHEMA
+		PRINT 'New schema: [' + CONVERT(VARCHAR(3), @NEW_SCHEMA_ID) + '] ' + @NEW_SCHEMA
+
+		IF EXISTS (SELECT fdb_schema_current_id FROM dbo.fdb_schema_current WHERE fdb_schema_current_id = 1 AND fdb_schema_next_has_errors = 1) BEGIN
+			SET @ERROR = 'Errors could exist in the data for the next FDB schema [' + @NEW_SCHEMA + '], the schemas can''t be swapped. Review the errors in the FDBUpdater daemon, fix any issues, then reset fdb_schema_next_has_errors to false in fdb_schema_current and try again.'
+			RAISERROR (@ERROR, 18, 1)
+		END
+
+		PRINT 'Synchronize Custom Medications'
+		SET @SQL = 'INSERT INTO ' + @NEW_SCHEMA + '.RNMMIDNDC (MEDID, med_name, MED_MEDID_DESC, obsdtec, NDC, MED_REF_DEA_CD, ROUTED_DOSAGE_FORM_MED_ID, med_routed_df_med_id_desc, ROUTED_MED_ID, MED_ROUTED_MED_ID_DESC, MED_NAME_ID, MED_NAME_TYPE_CD, MED_DOSAGE_FORM_ID, MED_DOSAGE_FORM_ABBR, MED_DOSAGE_FORM_DESC, MED_ROUTE_ID, MED_ROUTE_ABBR, MED_ROUTE_DESC, ETC_ID) 
+		SELECT MEDID, med_name, MED_MEDID_DESC, obsdtec, NDC, MED_REF_DEA_CD, ROUTED_DOSAGE_FORM_MED_ID, med_routed_df_med_id_desc, ROUTED_MED_ID, MED_ROUTED_MED_ID_DESC, MED_NAME_ID, MED_NAME_TYPE_CD, MED_DOSAGE_FORM_ID, MED_DOSAGE_FORM_ABBR, MED_DOSAGE_FORM_DESC, MED_ROUTE_ID, MED_ROUTE_ABBR, MED_ROUTE_DESC, ETC_ID 
+		FROM ' + @CURR_SCHEMA + '.RNMMIDNDC Z 
+		WHERE Z.MEDID > 999999 
+		AND NOT EXISTS (
+			SELECT MEDID 
+			FROM ' + @NEW_SCHEMA + '.RNMMIDNDC 
+			WHERE MEDID = Z.MEDID
+		)'
+		PRINT @SQL 
+		EXECUTE sys.sp_executesql @statement = @SQL 
+
+		SET @SQL = 'INSERT INTO ' + @NEW_SCHEMA + '.RMIID1 (MEDID, MED_MEDID_DESC, ROUTED_DOSAGE_FORM_MED_ID, GCN_SEQNO, MED_GCNSEQNO_ASSIGN_CD, MED_NAME_SOURCE_CD, MED_REF_FED_LEGEND_IND, MED_REF_DEA_CD, MED_REF_MULTI_SOURCE_CD, MED_REF_GEN_DRUG_NAME_CD, MED_REF_GEN_COMP_PRICE_CD, MED_REF_GEN_SPREAD_CD, MED_REF_INNOV_IND, MED_REF_GEN_THERA_EQU_CD, MED_REF_DESI_IND, MED_REF_DESI2_IND, MED_STATUS_CD, GCN_STRING) 
+		SELECT MEDID, MED_MEDID_DESC, ROUTED_DOSAGE_FORM_MED_ID, GCN_SEQNO, MED_GCNSEQNO_ASSIGN_CD, MED_NAME_SOURCE_CD, MED_REF_FED_LEGEND_IND, MED_REF_DEA_CD, MED_REF_MULTI_SOURCE_CD, MED_REF_GEN_DRUG_NAME_CD, MED_REF_GEN_COMP_PRICE_CD, MED_REF_GEN_SPREAD_CD, MED_REF_INNOV_IND, MED_REF_GEN_THERA_EQU_CD, MED_REF_DESI_IND, MED_REF_DESI2_IND, MED_STATUS_CD, GCN_STRING 
+		FROM ' + @CURR_SCHEMA + '.RMIID1 Z 
+		WHERE Z.MEDID > 999999 
+		AND NOT EXISTS (
+			SELECT MEDID 
+			FROM ' + @NEW_SCHEMA + '.RMIID1 
+			WHERE MEDID = Z.MEDID
+		)'
+		PRINT @SQL 
+		EXECUTE sys.sp_executesql @statement = @SQL 
+
+		PRINT 'Synchronize Active Meds'
+		SET @SQL = '
+		TRUNCATE TABLE ' + @NEW_SCHEMA + '.active_drugs;
+
+		INSERT INTO ' + @NEW_SCHEMA + '.active_drugs (medid, is_active) VALUES (0, 0);
+
+		INSERT INTO ' + @NEW_SCHEMA + '.active_drugs 
+		SELECT DISTINCT MEDID, 1 FROM ' + @NEW_SCHEMA + '.RNMMIDNDC;
+
+		INSERT INTO ' + @NEW_SCHEMA + '.active_drugs
+		SELECT MEDID, 0 FROM ' + @NEW_SCHEMA + '.RMIID1 WHERE medid NOT IN (
+			SELECT medid FROM ' + @NEW_SCHEMA + '.active_drugs
+		);
+
+		IF NOT EXISTS(SELECT 1 FROM ' + @NEW_SCHEMA + '.active_drugs WHERE medid = 999999)
+		BEGIN
+			INSERT INTO ' + @NEW_SCHEMA + '.active_drugs (medid, is_active) VALUES (999999, 1)
+		END;
+
+		IF NOT EXISTS(SELECT 1 FROM ' + @NEW_SCHEMA + '.active_drugs WHERE medid = -1)
+		BEGIN
+			INSERT INTO ' + @NEW_SCHEMA + '.active_drugs (medid, is_active) VALUES (-1, 1)
+		END;'
+		PRINT @SQL 
+		EXECUTE sys.sp_executesql @statement = @SQL 
+
+		SET @SQL = 'UPDATE ' + @NEW_SCHEMA + '.RNMMIDNDC SET NDC = '''' 
+		WHERE LEN(NDC) > 0 
+		AND LEN(NDC) <> 11'
+		PRINT @SQL 
+		EXECUTE sys.sp_executesql @statement = @SQL 
+
+		SET @SQL = 'UPDATE ' + @NEW_SCHEMA + '.RMIID1 SET GCN_STRING = NULL 
+		WHERE GCN_STRING LIKE ''0''
+		AND NOT GCN_STRING IS NULL'
+		PRINT @SQL 
+		EXECUTE sys.sp_executesql @statement = @SQL 
+
+		SET @SQL = 'UPDATE ' + @NEW_SCHEMA + '.RMIID1 SET GCN_STRING = '''' 
+		WHERE MEDID = 662863
+		AND GCN_STRING <> '''''
+		PRINT @SQL 
+		EXECUTE sys.sp_executesql @statement = @SQL 
+
+		DECLARE TABLES_CUR CURSOR FORWARD_ONLY READ_ONLY LOCAL FOR 	
+			SELECT name
+			FROM sys.tables 
+			WHERE schema_id = @CURR_SCHEMA_ID
+
+		OPEN TABLES_CUR
+		FETCH NEXT FROM TABLES_CUR INTO @TABLE_NAME	
+		WHILE @@FETCH_STATUS = 0 BEGIN 	
+			PRINT 'Table: ' + @TABLE_NAME 
+
+			SET @SQL = 'DROP SYNONYM IF EXISTS dbo.' + @TABLE_NAME
+			PRINT @SQL
+			EXECUTE sys.sp_executesql @statement = @SQL
+
+			SET @SQL = 'CREATE SYNONYM dbo.' + @TABLE_NAME + ' FOR ' + @NEW_SCHEMA + '.' + @TABLE_NAME
+			PRINT @SQL
+			EXECUTE sys.sp_executesql @statement = @SQL
+			
+			FETCH NEXT FROM TABLES_CUR INTO @TABLE_NAME	
+		END  	
+		CLOSE TABLES_CUR
+		DEALLOCATE TABLES_CUR
+
+		UPDATE dbo.fdb_schema_current 
+		SET fdb_schema_current_name = @NEW_SCHEMA, 
+		fdb_schema_current_activated = GETDATE(), 
+		fdb_schema_next_name = @CURR_SCHEMA
+		WHERE fdb_schema_current_id = 1
+
+		SET @ERROR = ''
+	END TRY
+
+	BEGIN CATCH
+		IF @@TRANCOUNT > 0 BEGIN
+			ROLLBACK TRANSACTION
+			PRINT 'Transaction failed'
+		END
+		SET @ERROR = 'Error Number: ' + CAST(ERROR_NUMBER() AS VARCHAR(10)) + '; ' + CHAR(10) +
+        'Error Severity: ' + CAST(ERROR_SEVERITY() AS VARCHAR(10)) + '; ' + CHAR(10) +
+        'Error State: ' + CAST(ERROR_STATE() AS VARCHAR(10)) + '; ' + CHAR(10) +
+        'Error Line: ' + CAST(ERROR_LINE() AS VARCHAR(10)) + '; ' + CHAR(10) +
+        'Error Message: ' + ERROR_MESSAGE()
+		PRINT @ERROR
+	END CATCH
+
+	IF @@TRANCOUNT > 0 BEGIN
+		COMMIT TRANSACTION
+		PRINT 'Transaction successful' 
+	END
+END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+GO

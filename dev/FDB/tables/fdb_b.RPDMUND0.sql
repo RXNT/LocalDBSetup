@@ -1,0 +1,9 @@
+CREATE TABLE [fdb_b].[RPDMUND0] (
+   [PDM_UNIT] [varchar](2) NOT NULL,
+   [PDM_UNDESC] [varchar](30) NULL
+
+   ,CONSTRAINT [RPDMUND0_PK] PRIMARY KEY CLUSTERED ([PDM_UNIT])
+)
+
+
+GO

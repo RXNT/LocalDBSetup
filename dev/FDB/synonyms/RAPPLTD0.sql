@@ -1,0 +1,2 @@
+CREATE SYNONYM [dbo].[RAPPLTD0] FOR [fdb_a].[RAPPLTD0]
+GO

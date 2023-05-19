@@ -1,0 +1,2 @@
+CREATE SYNONYM [dbo].[RDOSED2] FOR [fdb_a].[RDOSED2]
+GO

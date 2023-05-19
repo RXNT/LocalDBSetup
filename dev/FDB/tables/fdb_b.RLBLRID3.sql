@@ -1,0 +1,10 @@
+CREATE TABLE [fdb_b].[RLBLRID3] (
+   [LBLRID] [varchar](6) NOT NULL,
+   [MFG] [varchar](15) NULL,
+   [LBLRIND] [varchar](1) NULL
+
+   ,CONSTRAINT [RLBLRID3_PK] PRIMARY KEY CLUSTERED ([LBLRID])
+)
+
+
+GO

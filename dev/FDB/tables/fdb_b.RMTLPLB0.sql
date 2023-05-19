@@ -1,0 +1,9 @@
+CREATE TABLE [fdb_b].[RMTLPLB0] (
+   [MTL_PANEL_ID] [numeric](5,0) NOT NULL,
+   [LAB_ID] [numeric](8,0) NOT NULL
+
+   ,CONSTRAINT [RMTLPLB0_PK] PRIMARY KEY CLUSTERED ([MTL_PANEL_ID], [LAB_ID])
+)
+
+
+GO

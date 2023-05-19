@@ -1,0 +1,2 @@
+CREATE SYNONYM [dbo].[RADIMMA5] FOR [fdb_a].[RADIMMA5]
+GO

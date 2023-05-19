@@ -1,0 +1,24 @@
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+CREATE FUNCTION [core].[ufn_GetPatientInfoById] 
+( 
+    @PatientId BIGINT
+) 
+	RETURNS @Output TABLE(PatientId BIGINT,LastName VARCHAR(50),FirstName VARCHAR(50),MiddleName VARCHAR(50),Gender VARCHAR(1),DOB DATETIME)
+BEGIN 
+   
+    INSERT INTO @Output (PatientId,LastName,FirstName,MiddleName,Gender,DOB)  
+	SELECT P.PA_ID, P.PA_LAST, P.PA_FIRST, P.PA_MIDDLE, P.PA_SEX, P.pa_dob 
+	FROM patients p WITH(NOLOCK)
+	WHERE P.PA_ID = @PatientId
+    RETURN 
+END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+GO

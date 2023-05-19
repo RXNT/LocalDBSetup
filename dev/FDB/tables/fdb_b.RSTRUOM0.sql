@@ -1,0 +1,11 @@
+CREATE TABLE [fdb_b].[RSTRUOM0] (
+   [UOM_ID] [numeric](8,0) NOT NULL,
+   [UOM_DESC] [varchar](50) NULL,
+   [UOM_ABBR] [varchar](10) NULL,
+   [UOM_PREFERRED_DESC] [varchar](50) NULL
+
+   ,CONSTRAINT [RSTRUOM0_PK] PRIMARY KEY CLUSTERED ([UOM_ID])
+)
+
+
+GO

@@ -1,0 +1,15 @@
+CREATE TABLE [dbo].[tblVaccineCVXToVaccineGroupsMappings] (
+   [map_id] [int] NOT NULL
+      IDENTITY (1,1),
+   [cvx_id] [int] NOT NULL,
+   [vac_group_id] [int] NOT NULL,
+   [created_by] [int] NULL,
+   [created_date] [datetime] NULL,
+   [updated_by] [int] NULL,
+   [updated_date] [datetime] NULL
+
+   ,CONSTRAINT [PK_tblVaccineCVXToVaccineGroupsMappings] PRIMARY KEY CLUSTERED ([map_id])
+)
+
+
+GO

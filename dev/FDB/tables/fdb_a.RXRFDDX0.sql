@@ -1,0 +1,9 @@
+CREATE TABLE [fdb_a].[RXRFDDX0] (
+   [DACN] [varchar](2) NOT NULL,
+   [DAM_AGCSP] [numeric](6,0) NOT NULL
+
+   ,CONSTRAINT [RXRFDDX0_PK] PRIMARY KEY CLUSTERED ([DACN], [DAM_AGCSP])
+)
+
+
+GO

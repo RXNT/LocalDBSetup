@@ -1,0 +1,10 @@
+CREATE TABLE [dbo].[REVDEL0_EXT_VOCAB_LINK] (
+   [EVD_FDB_VOCAB_ID] [varchar](20) NOT NULL,
+   [EVD_FDB_VOCAB_TYPE_ID] [numeric](4,0) NOT NULL,
+   [EVD_EXT_VOCAB_ID] [varchar](50) NOT NULL,
+   [EVD_EXT_VOCAB_TYPE_ID] [numeric](4,0) NOT NULL,
+   [EVD_LINK_TYPE_ID] [numeric](4,0) NOT NULL
+)
+
+
+GO

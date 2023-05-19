@@ -1,0 +1,10 @@
+CREATE TABLE [dbo].[RMDMAXC0] (
+   [MDT_ID] [varchar](2) NOT NULL,
+   [MDT_MAXC] [varchar](1) NOT NULL,
+   [MDT_MAXCD] [varchar](50) NULL
+
+   ,CONSTRAINT [RMDMAXC0_PK] PRIMARY KEY CLUSTERED ([MDT_ID], [MDT_MAXC])
+)
+
+
+GO

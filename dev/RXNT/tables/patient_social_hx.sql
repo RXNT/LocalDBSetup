@@ -1,0 +1,61 @@
+CREATE TABLE [dbo].[patient_social_hx] (
+   [sochxid] [bigint] NOT NULL
+      IDENTITY (1,1),
+   [pat_id] [bigint] NULL,
+   [emp_info] [varchar](max) NULL,
+   [marital_status] [int] NULL,
+   [other_marital_status] [varchar](255) NULL,
+   [household_people_no] [varchar](50) NULL,
+   [smoking_status] [int] NULL,
+   [dr_id] [bigint] NULL,
+   [added_by_dr_id] [bigint] NULL,
+   [created_on] [datetime] NULL,
+   [last_modified_on] [datetime] NULL,
+   [last_modified_by] [bigint] NULL,
+   [comments] [varchar](max) NULL,
+   [enable] [bigint] NULL,
+   [familyhx_other] [varchar](max) NULL,
+   [medicalhx_other] [varchar](max) NULL,
+   [surgeryhx_other] [varchar](max) NULL,
+   [active] [bit] NULL,
+   [SmokingStatusId] [int] NULL,
+   [FinancialResourceStrainId] [int] NULL,
+   [EducationStatusId] [int] NULL,
+   [StressStatusId] [int] NULL,
+   [StrenousDays] [varchar](200) NULL,
+   [StrenousDaysND] [bit] NULL,
+   [StrenousMinutes] [varchar](200) NULL,
+   [StrenousMinutesND] [bit] NULL,
+   [AlcoholIntervalMonthId] [int] NULL,
+   [AlcoholIntervalDayId] [int] NULL,
+   [AlcoholIntervalOccasionId] [int] NULL,
+   [MaritalStatusId] [int] NULL,
+   [WeeklyPhoneTalkCount] [varchar](200) NULL,
+   [WeeklyPhoneTalkCountND] [bit] NULL,
+   [FriendFamilyGetTogetherCount] [varchar](200) NULL,
+   [FriendFamilyGetTogetherCountND] [bit] NULL,
+   [ChurchAttendCount] [varchar](200) NULL,
+   [ChurchAttendCountND] [bit] NULL,
+   [ClubOrgMemberStatusId] [int] NULL,
+   [EmotionallyAbusedStatusId] [int] NULL,
+   [AfraidStatusId] [int] NULL,
+   [SexualHarrasmentStatusId] [int] NULL,
+   [KHSHurtStatusId] [int] NULL,
+   [MultipleBirthIndicatorId] [int] NULL,
+   [BirthOrder] [bigint] NULL,
+   [hosphx_other] [varchar](1) NULL,
+   [TobaccoUse] [varchar](200) NULL,
+   [MarijuanaUse] [varchar](200) NULL,
+   [Vaping] [varchar](200) NULL,
+   [RecreationalDrugUse] [varchar](200) NULL,
+   [ETOH] [varchar](200) NULL,
+   [GravidaPara] [varchar](200) NULL,
+   [hospitalizationhx_other] [varchar](max) NULL
+
+   ,CONSTRAINT [PKpatient_social_hx_hx] PRIMARY KEY CLUSTERED ([sochxid])
+)
+
+CREATE NONCLUSTERED INDEX [patient_medical_hx_paid] ON [dbo].[patient_social_hx] ([sochxid], [pat_id])
+CREATE NONCLUSTERED INDEX [patient_medical_hx_paidOnly] ON [dbo].[patient_social_hx] ([pat_id])
+
+GO

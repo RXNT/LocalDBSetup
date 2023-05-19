@@ -1,0 +1,2 @@
+CREATE SYNONYM [dbo].[REVDVT0] FOR [fdb_a].[REVDVT0]
+GO

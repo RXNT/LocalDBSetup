@@ -1,0 +1,9 @@
+CREATE TABLE [fdb_b].[RGTCD0] (
+   [GTC] [numeric](2,0) NOT NULL,
+   [GTC_DESC] [varchar](50) NULL
+
+   ,CONSTRAINT [RGTCD0_PK] PRIMARY KEY CLUSTERED ([GTC])
+)
+
+
+GO

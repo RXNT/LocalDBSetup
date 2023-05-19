@@ -1,0 +1,22 @@
+CREATE TABLE [fdb_b].[RPEMMA5] (
+   [PEC] [numeric](6,0) NOT NULL,
+   [DGNAME] [varchar](30) NULL,
+   [LBLMSG1] [varchar](27) NULL,
+   [LBLMSG2] [varchar](27) NULL,
+   [PEMONO] [numeric](4,0) NULL,
+   [AMACDE] [varchar](3) NULL,
+   [PHMXCDE] [varchar](3) NULL,
+   [USPCDE] [varchar](4) NULL,
+   [NARDCDE] [varchar](3) NULL,
+   [ASHPCDE3] [numeric](6,0) NULL,
+   [PEMONOS] [numeric](4,0) NULL,
+   [PEMONOFRA] [numeric](4,0) NULL
+
+   ,CONSTRAINT [RPEMMA5_PK] PRIMARY KEY CLUSTERED ([PEC])
+)
+
+CREATE NONCLUSTERED INDEX [RPEMMA5_NX1] ON [fdb_b].[RPEMMA5] ([PEMONO])
+CREATE NONCLUSTERED INDEX [RPEMMA5_NX2] ON [fdb_b].[RPEMMA5] ([ASHPCDE3])
+CREATE NONCLUSTERED INDEX [RPEMMA5_NX3] ON [fdb_b].[RPEMMA5] ([PEMONOS])
+
+GO

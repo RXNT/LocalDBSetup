@@ -1,0 +1,6 @@
+CREATE TABLE [dbo].[NDDF_PRODUCT_INFO] (
+   [PRODUCTION_DATE] [datetime] NOT NULL
+)
+
+
+GO

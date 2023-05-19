@@ -1,0 +1,16 @@
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+CREATE VIEW [cqm2018].[vwGenderCodes]
+AS
+SELECT 'F' GenderId,'F' AS GenderCode,'Female' Description
+UNION
+SELECT 'M' GenderId,'M' AS GenderCode, 'Male' Description 
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+GO

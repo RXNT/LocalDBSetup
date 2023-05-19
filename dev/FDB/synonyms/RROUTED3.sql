@@ -1,0 +1,2 @@
+CREATE SYNONYM [dbo].[RROUTED3] FOR [fdb_a].[RROUTED3]
+GO

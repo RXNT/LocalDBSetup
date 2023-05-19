@@ -1,0 +1,43 @@
+CREATE TABLE [fdb_a].[RNMMIDNDC] (
+   [NDC] [varchar](11) NOT NULL,
+   [OBSDTEC] [datetime] NULL,
+   [LBLRID] [varchar](6) NULL,
+   [GCN_SEQNO] [numeric](6,0) NULL,
+   [LN] [varchar](40) NULL,
+   [BN] [varchar](30) NULL,
+   [DEA] [varchar](1) NULL,
+   [GPI] [varchar](1) NULL,
+   [OBC] [varchar](2) NULL,
+   [REPACK] [varchar](1) NULL,
+   [LN25] [varchar](25) NULL,
+   [MEDID] [numeric](8,0) NOT NULL,
+   [MED_STRENGTH] [varchar](15) NULL,
+   [MED_STRENGTH_UOM] [varchar](15) NULL,
+   [MED_MEDID_DESC] [varchar](210) NOT NULL,
+   [MED_REF_DEA_CD] [varchar](1) NOT NULL,
+   [GENERIC_MEDID] [numeric](8,0) NULL,
+   [ROUTED_DOSAGE_FORM_MED_ID] [numeric](8,0) NOT NULL,
+   [med_routed_df_med_id_desc] [varchar](60) NOT NULL,
+   [ROUTED_MED_ID] [numeric](8,0) NOT NULL,
+   [MED_ROUTED_MED_ID_DESC] [varchar](60) NOT NULL,
+   [MED_NAME_ID] [numeric](8,0) NOT NULL,
+   [MED_NAME] [varchar](210) NOT NULL,
+   [MED_NAME_TYPE_CD] [varchar](1) NOT NULL,
+   [MED_DOSAGE_FORM_ID] [numeric](5,0) NOT NULL,
+   [MED_DOSAGE_FORM_ABBR] [varchar](4) NOT NULL,
+   [MED_DOSAGE_FORM_DESC] [varchar](30) NOT NULL,
+   [MED_ROUTE_ID] [numeric](5,0) NOT NULL,
+   [MED_ROUTE_ABBR] [varchar](4) NOT NULL,
+   [MED_ROUTE_DESC] [varchar](30) NOT NULL,
+   [ETC_ID] [numeric](8,0) NOT NULL,
+   [ETC_NAME] [varchar](70) NULL
+
+)
+
+CREATE NONCLUSTERED INDEX [_dta_index_RNMMIDNDC_12_283148054__K2_K23_K1_K12_K15_K17_K22_K31_K32_K4_K3_K10_K18_K16] ON [fdb_a].[RNMMIDNDC] ([OBSDTEC], [MED_NAME], [NDC], [MEDID], [MED_MEDID_DESC], [GENERIC_MEDID], [MED_NAME_ID], [ETC_ID], [ETC_NAME], [GCN_SEQNO], [LBLRID], [REPACK], [ROUTED_DOSAGE_FORM_MED_ID], [MED_REF_DEA_CD])
+CREATE NONCLUSTERED INDEX [_dta_index_RNMMIDNDC_6_283148054__K2_K12_K15_K22_K16_K31_K32] ON [fdb_a].[RNMMIDNDC] ([OBSDTEC], [MEDID], [MED_MEDID_DESC], [MED_NAME_ID], [MED_REF_DEA_CD], [ETC_ID], [ETC_NAME])
+CREATE NONCLUSTERED INDEX [ix_RNMMIDNDC_MEDID] ON [fdb_a].[RNMMIDNDC] ([MEDID])
+CREATE CLUSTERED INDEX [MAIN_DRG_INDX] ON [fdb_a].[RNMMIDNDC] ([NDC], [MEDID], [MED_MEDID_DESC], [GENERIC_MEDID], [MED_NAME_ID], [MED_NAME], [ETC_ID], [ETC_NAME], [GCN_SEQNO], [LBLRID], [OBSDTEC], [REPACK], [ROUTED_DOSAGE_FORM_MED_ID])
+CREATE NONCLUSTERED INDEX [NDC_INDX] ON [fdb_a].[RNMMIDNDC] ([NDC])
+
+GO

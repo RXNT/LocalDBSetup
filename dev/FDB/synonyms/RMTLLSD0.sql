@@ -1,0 +1,2 @@
+CREATE SYNONYM [dbo].[RMTLLSD0] FOR [fdb_a].[RMTLLSD0]
+GO

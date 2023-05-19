@@ -1,0 +1,2 @@
+CREATE SYNONYM [dbo].[RADIMGC4] FOR [fdb_a].[RADIMGC4]
+GO

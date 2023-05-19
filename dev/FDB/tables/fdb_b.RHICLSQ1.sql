@@ -1,0 +1,10 @@
+CREATE TABLE [fdb_b].[RHICLSQ1] (
+   [HICL_SEQNO] [numeric](6,0) NOT NULL,
+   [GNN] [varchar](30) NULL,
+   [GNN60] [varchar](60) NULL
+
+   ,CONSTRAINT [RHICLSQ1_PK] PRIMARY KEY CLUSTERED ([HICL_SEQNO])
+)
+
+
+GO

@@ -1,0 +1,12 @@
+CREATE TABLE [fdb_a].[RNP2] (
+   [NDC] [varchar](11) NOT NULL,
+   [NPT_TYPE] [varchar](2) NOT NULL,
+   [NPT_DATEC] [datetime] NOT NULL,
+   [NPT_PRICEX] [numeric](11,5) NULL
+
+   ,CONSTRAINT [RNP2_PK] PRIMARY KEY CLUSTERED ([NDC], [NPT_TYPE], [NPT_DATEC])
+)
+
+CREATE NONCLUSTERED INDEX [RNP2_NX1] ON [fdb_a].[RNP2] ([NPT_TYPE])
+
+GO

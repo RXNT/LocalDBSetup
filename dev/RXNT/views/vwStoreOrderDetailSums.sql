@@ -1,0 +1,16 @@
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+CREATE VIEW [dbo].[vwStoreOrderDetailSums]
+AS
+SELECT     OrderID, SUM(Quantity * UnitPrice) AS DetailTotal
+FROM         dbo.StoreOrderDetails
+GROUP BY OrderID
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+GO

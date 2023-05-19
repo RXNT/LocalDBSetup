@@ -1,0 +1,2 @@
+CREATE SYNONYM [dbo].[RADIMSL1] FOR [fdb_a].[RADIMSL1]
+GO

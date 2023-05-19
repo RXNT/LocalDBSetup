@@ -1,0 +1,19 @@
+SET QUOTED_IDENTIFIER ON 
+GO
+SET ANSI_NULLS ON 
+GO
+CREATE PROCEDURE  [support].[AcceptAllPatientLabOrder] 
+(
+	@DoctorGroupId BIGINT 
+)
+AS
+BEGIN
+	UPDATE dbo.lab_main SET IS_READ = 1, READ_BY = dr_id WHERE dg_id = @DoctorGroupId and ISNULL(is_read,0) = 0
+END
+GO
+SET QUOTED_IDENTIFIER OFF 
+GO
+SET ANSI_NULLS OFF 
+GO
+
+GO

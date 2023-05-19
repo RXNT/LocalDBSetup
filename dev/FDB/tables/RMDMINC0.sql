@@ -1,0 +1,10 @@
+CREATE TABLE [dbo].[RMDMINC0] (
+   [MDT_ID] [varchar](2) NOT NULL,
+   [MDT_MINC] [varchar](1) NOT NULL,
+   [MDT_MINCD] [varchar](50) NULL
+
+   ,CONSTRAINT [RMDMINC0_PK] PRIMARY KEY CLUSTERED ([MDT_ID], [MDT_MINC])
+)
+
+
+GO
